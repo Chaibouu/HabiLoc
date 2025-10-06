@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - HabiLoc</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/links.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="index.html" class="auth-logo">
+                    <h2>
+                        <div class="logo-icon">H</div>
+                        <span class="logo-text">HabiLoc</span>
+                    </h2>
+                </a>
+                <h1>Connexion</h1>
+                <p>Connectez-vous à votre compte HabiLoc</p>
+            </div>
+
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="remember">
+                        <span class="checkmark"></span>
+                        Se souvenir de moi
+                    </label>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                </div>
+
+                <button type="submit" class="btn-auth">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Se connecter
+                </button>
+
+                <div class="auth-divider">
+                    <span>ou</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="btn-social google">
+                        <i class="fab fa-google"></i>
+                        Continuer avec Google
+                    </button>
+                    <button type="button" class="btn-social facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Continuer avec Facebook
+                    </button>
+                </div>
+            </form>
+
+            <div class="auth-footer">
+                <p>Vous n'avez pas de compte ? <a href="register.html">Créer un compte</a></p>
+            </div>
+        </div>
+
+        <div class="auth-image">
+            <div class="auth-image-content">
+                <h2>Bienvenue sur HabiLoc</h2>
+                <p>Trouvez votre maison idéale en quelques clics</p>
+                <div class="auth-features">
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Sécurisé</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>Rapide</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-heart"></i>
+                        <span>Fiable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/active-links.js"></script>
+</body>
+</html>

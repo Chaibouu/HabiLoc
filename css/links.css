@@ -1,0 +1,440 @@
+/* Styles modernes pour les liens - HabiLoc */
+
+/* Styles de base pour tous les liens */
+a {
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* Suppression de l'outline par défaut */
+a:focus {
+    outline: none;
+}
+
+/* Styles pour les liens actifs - conservation du trait */
+a.active {
+    color: var(--primary-color);
+}
+
+a.active::before {
+    width: 100% !important;
+}
+
+/* Effet de trait qui trace une ligne */
+.link-underline {
+    position: relative;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.link-underline::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+}
+
+.link-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    right: 50%;
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(50%);
+}
+
+.link-underline:hover::before {
+    width: 50%;
+    left: 0;
+    transform: translateX(0);
+}
+
+.link-underline:hover::after {
+    width: 50%;
+    right: 0;
+    transform: translateX(0);
+}
+
+.link-underline:hover {
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.link-underline.active {
+    color: var(--primary-color);
+}
+
+.link-underline.active::before,
+.link-underline.active::after {
+    width: 50%;
+}
+
+/* Effet de trait qui trace une ligne de gauche à droite */
+.link-trace {
+    position: relative;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.link-trace::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-trace::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+}
+
+.link-trace:hover::before {
+    width: 100%;
+}
+
+.link-trace:hover::after {
+    width: 100%;
+}
+
+.link-trace:hover {
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.link-trace.active {
+    color: var(--primary-color);
+}
+
+.link-trace.active::before,
+.link-trace.active::after {
+    width: 100%;
+}
+
+/* Effet de trait diagonal */
+.link-diagonal {
+    position: relative;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.link-diagonal::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: rotate(-2deg);
+}
+
+.link-diagonal:hover::before {
+    width: 100%;
+}
+
+.link-diagonal:hover {
+    color: var(--primary-color);
+    transform: translateY(-1px) rotate(1deg);
+}
+
+.link-diagonal.active {
+    color: var(--primary-color);
+}
+
+.link-diagonal.active::before {
+    width: 100%;
+}
+
+/* Effet de trait en zigzag */
+.link-zigzag {
+    position: relative;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.link-zigzag::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--primary-color) 0px,
+        var(--primary-color) 4px,
+        var(--primary-dark) 4px,
+        var(--primary-dark) 8px
+    );
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-zigzag:hover::before {
+    width: 100%;
+}
+
+.link-zigzag:hover {
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.link-zigzag.active {
+    color: var(--primary-color);
+}
+
+.link-zigzag.active::before {
+    width: 100%;
+}
+
+/* Effet de glissement */
+.link-slide {
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.link-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.link-slide:hover::before {
+    left: 100%;
+}
+
+.link-slide:hover {
+    color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+/* Effet de pulsation */
+.link-pulse {
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+}
+
+.link-pulse:hover {
+    animation: pulse 0.6s ease-in-out;
+    background: rgba(37, 99, 235, 0.1);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Effet de rotation */
+.link-rotate {
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    transform-origin: center;
+}
+
+.link-rotate:hover {
+    color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.1);
+    transform: rotate(2deg) scale(1.02);
+}
+
+/* Effet de zoom */
+.link-zoom {
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    transform-origin: center;
+}
+
+.link-zoom:hover {
+    color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.1);
+    transform: scale(1.05);
+}
+
+/* Effet de rebond */
+.link-bounce {
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+}
+
+.link-bounce:hover {
+    color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.1);
+    animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-4px); }
+    60% { transform: translateY(-2px); }
+}
+
+/* Styles pour les liens de navigation */
+.nav-link-modern {
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav-link-modern:hover::before {
+    opacity: 0.1;
+}
+
+.nav-link-modern:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.nav-link-modern:focus {
+    color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Styles pour les liens de footer */
+.footer-link-modern {
+    color: #94a3b8;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+}
+
+.footer-link-modern::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.footer-link-modern:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.footer-link-modern:hover {
+    color: white;
+    transform: translateX(4px);
+}
+
+/* Styles pour les liens de boutons */
+.button-link {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.button-link:hover::before {
+    left: 100%;
+}
+
+.button-link:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.button-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+/* Responsive design pour les liens */
+@media (max-width: 768px) {
+    .nav-link-modern {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .link-background,
+    .link-slide,
+    .link-pulse,
+    .link-rotate,
+    .link-zoom,
+    .link-bounce {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.9rem;
+    }
+}

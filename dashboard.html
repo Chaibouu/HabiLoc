@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - HabiLoc</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/links.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h2>
+                            <div class="logo-icon">H</div>
+                            <span class="logo-text">HabiLoc</span>
+                        </h2>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#annonces" class="nav-link">Annonces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-user"></i>
+                            <span id="userName">Mon compte</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="dashboard.html" class="dropdown-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Tableau de bord
+                            </a>
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user-edit"></i>
+                                Mon profil
+                            </a>
+                            <a href="favorites.html" class="dropdown-item">
+                                <i class="fas fa-heart"></i>
+                                Mes favoris
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Déconnexion
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Dashboard Main -->
+    <main class="dashboard-main">
+        <div class="dashboard-container">
+            <!-- Sidebar -->
+            <aside class="dashboard-sidebar">
+                <div class="sidebar-header">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-details">
+                            <h3 id="sidebarUserName">Nom utilisateur</h3>
+                            <p id="sidebarUserType">Type de compte</p>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#overview" class="nav-link active" onclick="showSection('overview')">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Vue d'ensemble</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#properties" class="nav-link" onclick="showSection('properties')">
+                                <i class="fas fa-home"></i>
+                                <span>Mes propriétés</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#favorites" class="nav-link" onclick="showSection('favorites')">
+                                <i class="fas fa-heart"></i>
+                                <span>Mes favoris</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#requests" class="nav-link" onclick="showSection('requests')">
+                                <i class="fas fa-envelope"></i>
+                                <span>Mes demandes</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#profile" class="nav-link" onclick="showSection('profile')">
+                                <i class="fas fa-user-edit"></i>
+                                <span>Mon profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="adminSection" style="display: none;">
+                            <a href="#admin" class="nav-link" onclick="showSection('admin')">
+                                <i class="fas fa-cog"></i>
+                                <span>Administration</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="dashboard-content">
+                <!-- Vue d'ensemble -->
+                <section id="overview" class="dashboard-section active">
+                    <div class="section-header">
+                        <h1>Vue d'ensemble</h1>
+                        <p>Bienvenue sur votre tableau de bord HabiLoc</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalProperties">0</h3>
+                                <p>Propriétés</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalFavorites">0</h3>
+                                <p>Favoris</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalRequests">0</h3>
+                                <p>Demandes</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalViews">0</h3>
+                                <p>Vues</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h2>Activité récente</h2>
+                        <div class="activity-list" id="recentActivity">
+                            <!-- Activité récente -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Mes propriétés -->
+                <section id="properties" class="dashboard-section">
+                    <div class="section-header">
+                        <h1>Mes propriétés</h1>
+                        <button class="btn-primary" onclick="addProperty()">
+                            <i class="fas fa-plus"></i>
+                            Ajouter une propriété
+                        </button>
+                    </div>
+
+                    <div class="properties-grid" id="userProperties">
+                        <!-- Propriétés de l'utilisateur -->
+                    </div>
+                </section>
+
+                <!-- Mes favoris -->
+                <section id="favorites" class="dashboard-section">
+                    <div class="section-header">
+                        <h1>Mes favoris</h1>
+                        <p>Propriétés que vous avez ajoutées aux favoris</p>
+                    </div>
+
+                    <div class="favorites-grid" id="userFavorites">
+                        <!-- Propriétés favorites -->
+                    </div>
+                </section>
+
+                <!-- Mes demandes -->
+                <section id="requests" class="dashboard-section">
+                    <div class="section-header">
+                        <h1>Mes demandes</h1>
+                        <p>Historique de vos demandes de contact</p>
+                    </div>
+
+                    <div class="requests-list" id="userRequests">
+                        <!-- Demandes de l'utilisateur -->
+                    </div>
+                </section>
+
+                <!-- Mon profil -->
+                <section id="profile" class="dashboard-section">
+                    <div class="section-header">
+                        <h1>Mon profil</h1>
+                        <p>Gérez vos informations personnelles</p>
+                    </div>
+
+                    <div class="profile-form">
+                        <form id="profileForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="profileFirstName">Prénom</label>
+                                    <input type="text" id="profileFirstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileLastName">Nom</label>
+                                    <input type="text" id="profileLastName" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="profileEmail">Email</label>
+                                    <input type="email" id="profileEmail" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profilePhone">Téléphone</label>
+                                    <input type="tel" id="profilePhone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="profileType">Type de compte</label>
+                                <select id="profileType" name="userType" required>
+                                    <option value="tenant">Locataire</option>
+                                    <option value="owner">Propriétaire</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i>
+                                Sauvegarder
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Administration -->
+                <section id="admin" class="dashboard-section">
+                    <div class="section-header">
+                        <h1>Administration</h1>
+                        <p>Gestion des propriétés et utilisateurs</p>
+                    </div>
+
+                    <div class="admin-tabs">
+                        <button class="tab-btn active" onclick="showAdminTab('properties')">Propriétés</button>
+                        <button class="tab-btn" onclick="showAdminTab('users')">Utilisateurs</button>
+                        <button class="tab-btn" onclick="showAdminTab('contacts')">Messages</button>
+                    </div>
+
+                    <div class="admin-content">
+                        <div id="admin-properties" class="admin-tab active">
+                            <div class="admin-actions">
+                                <button class="btn-primary" onclick="addProperty()">
+                                    <i class="fas fa-plus"></i>
+                                    Ajouter une propriété
+                                </button>
+                                <div class="search-box">
+                                    <input type="text" placeholder="Rechercher..." id="adminSearch">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <div class="admin-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Propriété</th>
+                                            <th>Prix</th>
+                                            <th>Statut</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminPropertiesTable">
+                                        <!-- Tableau des propriétés -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="admin-users" class="admin-tab">
+                            <div class="admin-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Utilisateur</th>
+                                            <th>Email</th>
+                                            <th>Type</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminUsersTable">
+                                        <!-- Tableau des utilisateurs -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="admin-contacts" class="admin-tab">
+                            <div class="admin-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Email</th>
+                                            <th>Propriété</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminContactsTable">
+                                        <!-- Tableau des contacts -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal pour ajouter une propriété -->
+    <div id="propertyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ajouter une propriété</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="propertyForm" class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="propName">Nom de la propriété</label>
+                        <input type="text" id="propName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="propLocation">Localisation</label>
+                        <input type="text" id="propLocation" name="location" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="propPrice">Prix (FCFA/mois)</label>
+                        <input type="number" id="propPrice" name="price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="propBedrooms">Chambres</label>
+                        <input type="number" id="propBedrooms" name="bedrooms" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="propBathrooms">Salles de bain</label>
+                        <input type="number" id="propBathrooms" name="bathrooms" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="propArea">Surface (m²)</label>
+                        <input type="number" id="propArea" name="area" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="propDescription">Description</label>
+                    <textarea id="propDescription" name="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="propImages">Images (URLs séparées par des virgules)</label>
+                    <textarea id="propImages" name="images" rows="3" placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Annuler</button>
+                    <button type="submit" class="btn-primary">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/init-data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/active-links.js"></script>
+</body>
+</html>
