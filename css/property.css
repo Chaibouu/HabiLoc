@@ -589,18 +589,28 @@
     }
 
     .description-tabs {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        border-bottom: 1px solid var(--border-color);
+        padding: 0 1rem;
     }
 
     .tab-btn {
-        text-align: left;
+        flex: 1;
+        text-align: center;
+        padding: 0.75rem 0.5rem;
+        font-size: 0.85rem;
         border-bottom: 1px solid var(--border-color);
         border-right: none;
+        min-width: 0;
     }
 
     .tab-btn.active {
-        border-bottom-color: var(--border-color);
-        border-left: 3px solid var(--primary-color);
+        border-bottom-color: var(--primary-color);
+        border-left: none;
+        background: var(--bg-light);
     }
 
     .similar-grid {
@@ -644,6 +654,16 @@
 
     .contact-form-section {
         padding: 1.5rem;
+    }
+    
+    .description-tabs {
+        gap: 0.25rem;
+        padding: 0 0.5rem;
+    }
+    
+    .tab-btn {
+        padding: 0.6rem 0.25rem;
+        font-size: 0.8rem;
     }
 }
 
